@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3352b8"
+    tools:context="com.example.ulanov.ChooseTypeOfSort">
+    <LinearLayout
+        android:id="@+id/switches"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="140dp"
+        android:paddingRight="-70dp" >
+        <Switch
+            android:id="@+id/bubbleSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="51dp"
+            android:layout_marginTop="42dp"
+            android:textColor="@color/white"
+            android:layout_marginEnd="71dp"
+            android:minHeight="48dp"
+            android:text="Пузырьковая"
+            app:layout_constraintEnd_toStartOf="@+id/bubbleResultText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Switch
+            android:id="@+id/pyramidSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="51dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="85dp"
+            android:minHeight="48dp"
+            android:text="Пирамидальнная"
+            app:layout_constraintEnd_toStartOf="@+id/pyramidTextResult"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mergeSwitch" />
+
+        <Switch
+            android:id="@+id/mergeSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="51dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="84dp"
+            android:minHeight="48dp"
+            android:text="Слиянием"
+            app:layout_constraintEnd_toStartOf="@+id/mergeTextResult"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/insertSwitch" />
+
+        <Switch
+            android:id="@+id/insertSwitch"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="51dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="74dp"
+            android:minHeight="48dp"
+            android:text="Вставками"
+            app:layout_constraintEnd_toStartOf="@+id/insertResultText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bubbleSwitch" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintLeft_toRightOf="@+id/switches">
+        <TextView
+            android:id="@+id/bubbleResultText"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text=""/>
+
+        <TextView
+            android:id="@+id/pyramidTextResult"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/mergeTextResult"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/insertResultText"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="" />
+    </LinearLayout>
+
+    <Switch
+        android:id="@+id/allSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="28dp"
+        android:minHeight="48dp"
+        android:text="Все сортировки"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switches" />
+
+
+    <Button
+        android:id="@+id/prevPage"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Назад"
+        android:backgroundTint="#e6871c"
+        app:layout_constraintRight_toLeftOf="@+id/sort"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allSwitch" />
+
+    <Button
+        android:id="@+id/sort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="37dp"
+        android:text="Выполнить\nсортировку"
+        android:backgroundTint="#e6871c"
+        app:layout_constraintTop_toBottomOf="@+id/allSwitch"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/prevPage"/>
+
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:layout_marginBottom="34dp"
+        android:text="Сохранить"
+        android:visibility="gone"
+        android:backgroundTint="#C12525"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prevPage"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
