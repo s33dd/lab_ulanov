@@ -62,9 +62,10 @@ public class ChooseTypeOfSort extends AppCompatActivity {
                 result.set(j, result.get(j - 1));
                 j--;
                 changes++;
+                compares++;
             }
-            //if(j != 0 || i != 0)
-            compares++;
+            if(j > 0 && result.get(j - 1) <= array.get(i))
+                compares++;
             result.set(j, array.get(i));
         }
         return result;

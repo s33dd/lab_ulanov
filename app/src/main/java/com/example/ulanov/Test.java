@@ -14,6 +14,7 @@ public class Test extends AppCompatActivity {
 
     public static int compares = 0;
     public static int changes = 0;
+    public int sizeOfArray = 3;
 
     static ArrayList<Integer> bubble_sort(ArrayList<Integer> array)
     {
@@ -55,9 +56,10 @@ public class Test extends AppCompatActivity {
                 result.set(j, result.get(j - 1));
                 j--;
                 changes++;
+                compares++;
             }
-            //if(j != 0 || i != 0)
-            compares++;
+            if(j > 0 && result.get(j - 1) <= array.get(i))
+                compares++;
             result.set(j, array.get(i));
         }
         return result;
@@ -196,29 +198,53 @@ public class Test extends AppCompatActivity {
                 ArrayList<Integer> array = new ArrayList<Integer>();
                 ArrayList<Integer> randomArray = new ArrayList<Integer>();
                 Integer value = 0;
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < sizeOfArray; i++)
                 {
-                    randomArray.add(i);
+                    array.add((int)(Math.random()* ((100 - i - 1))));
                 }
-               for (int i = 0; i < 10; i++)
+               /*for (int i = 0; i < sizeOfArray; i++)
                 {
-                    value = (int)(Math.random()* ((10 - i - 1)));
+                    value = (int)(Math.random()* ((sizeOfArray - i - 1)));
                     array.add(randomArray.get(value));
                     randomArray.remove(value);
-                }
+                }*/
                 originalArray.setText("Массив:\n" + array.toString());
-                ArrayList<Integer> copy_of_array = array;
-                ArrayList result = bubble_sort(copy_of_array);
-                bubbleSort.setText("Отсортированный пузырьком:\n" + result.toString());
-                copy_of_array = array;
+                ArrayList<Integer> copy_of_array = new ArrayList<>();
+                ArrayList result = new ArrayList();
+                for(int i = 0; i < 3; i++){
+                    copy_of_array.add(array.get(i));
+                }
+                result = bubble_sort(copy_of_array);
+                bubbleSort.setText("Отсортированный пузырьком:\n" + result.toString() + "\nСравнения: " +
+                        compares + "\nПерестановки " + changes);
+                result.clear();
+                copy_of_array.clear();
+                for(int i = 0; i < 3; i++){
+                    copy_of_array.add(array.get(i));
+                }
+                //copy_of_array = array;
+
                 result = insert_sort(copy_of_array);
-                insertSortTest.setText("Отсортированный вставками:\n" + result.toString());
-                copy_of_array = array;
-                mergeSort(copy_of_array, 0, 9);
-                mergeSort.setText("Отсортированный слиянием:\n" + copy_of_array.toString());
-                copy_of_array = array;
-                sorting(copy_of_array, 10);
-                pyramidSort.setText("Отсортированный пирамидальной:\n" + copy_of_array.toString());
+                insertSortTest.setText("Отсортированный вставками:\n" + result.toString() + "\nСравнения: " +
+                        compares + "\nПерестановки " + changes);
+                //copy_of_array = array;
+                result.clear();
+                copy_of_array.clear();
+                for(int i = 0; i < 3; i++){
+                    copy_of_array.add(array.get(i));
+                }
+                mergeSort(copy_of_array, 0, sizeOfArray - 1);
+                mergeSort.setText("Отсортированный слиянием:\n" + copy_of_array.toString() + "\nСравнения: " +
+                        compares + "\nПерестановки " + changes);
+                //copy_of_array = array;
+                result.clear();
+                copy_of_array.clear();
+                for(int i = 0; i < 3; i++){
+                    copy_of_array.add(array.get(i));
+                }
+                sorting(copy_of_array, sizeOfArray);
+                pyramidSort.setText("Отсортированный пирамидальной:\n" + copy_of_array.toString() + "\nСравнения: " +
+                        compares + "\nПерестановки " + changes);
             }
         });
 
