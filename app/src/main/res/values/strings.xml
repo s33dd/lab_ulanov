@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Ulanov</string>
     <string name="empty_size_of_array">Please enter size of array</string>
+    <string name="empty_array">Please enter array</string>
     <string name="wrong_data_format">Please check entered data</string>
     <string name="not_chosen_type_of_sort">Please choose sort method</string>
     <string name="title_activity_second_activivty">SecondActivivty</string>

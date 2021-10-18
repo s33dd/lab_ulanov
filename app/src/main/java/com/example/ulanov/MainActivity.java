@@ -22,13 +22,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonAlmost;
     Button buttonReverse;
     Button buttonSorted;
-    Button change_to_second_page;
 
     EditText randomSize;
     EditText emptyArray;
     EditText almostSortedSize;
     EditText reverseSortedSize;
     EditText SortedSize;
+    EditText lowerLimit;
+    EditText upperLimit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +42,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonAlmost = findViewById(R.id.buttonAlmost);
         buttonReverse = findViewById(R.id.buttonReverse);
         buttonSorted = findViewById(R.id.buttonSorted);
-        change_to_second_page = findViewById(R.id.change_to_second_page);
         Button test = findViewById(R.id.test);
 
-        randomSize = findViewById(R.id.randomSize);
+        randomSize = findViewById(R.id.arraySize);
         emptyArray = findViewById(R.id.emptyArray);
-        almostSortedSize = findViewById(R.id.almostSortedSize);
-        reverseSortedSize = findViewById(R.id.reverseSortedSize);
-        SortedSize = findViewById(R.id.SortedSize);
+        almostSortedSize = findViewById(R.id.arraySize);
+        reverseSortedSize = findViewById(R.id.arraySize);
+        SortedSize = findViewById(R.id.arraySize);
+        lowerLimit = findViewById(R.id.lowerLimit);
+        upperLimit = findViewById(R.id.upperLimit);
 
         final Integer[] size_of_array = {0};
         ArrayList<Integer> final_array = new ArrayList<Integer>();
@@ -63,21 +65,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     size_of_array[0] = 0;
                     try {
                         size_of_array[0] = Integer.parseInt(randomSize.getText().toString());
+                        ArrayList<Integer> randomArray = new ArrayList<Integer>();
+                        Integer value = 0;
+                        for (int i = 0; i < size_of_array[0]; i++)
+                        {
+                            int max = (int) (Integer.parseInt(upperLimit.getText().toString()) / 0.99);
+                            int min = Integer.parseInt(lowerLimit.getText().toString());
+                            value = (int) (Math.random() * max) + min;
+                            randomArray.add(value);
+                        }
+                        for (int i = 0; i < size_of_array[0]; i++)
+                        {
+                            final_array.add(randomArray.get(i));
+                        }
+                        Intent intent = new Intent(MainActivity.this, ChooseTypeOfSort.class);
+                        intent.putExtra("array", final_array);
+                        intent.putExtra("size_of_array", size_of_array[0]);
+                        startActivity(intent);
                     } catch (NumberFormatException e) {
                         Toast.makeText(MainActivity.this, R.string.wrong_data_format, Toast.LENGTH_SHORT).show();
-                    }
-                    ArrayList<Integer> randomArray = new ArrayList<Integer>();
-                    Integer rnd = 0;
-                    Integer value = 0;
-                    for (int i = 0; i < size_of_array[0]; i++)
-                    {
-                        randomArray.add(i);
-                    }
-                    for (int i = 0; i < size_of_array[0]; i++)
-                    {
-                        value = (int)(Math.random()* ((size_of_array[0] - i - 1) + 1));
-                        final_array.add(randomArray.get(value));
-                        randomArray.remove(value);
                     }
                 }
             }
@@ -87,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 if(emptyArray.getText().toString().equals(""))
-                    Toast.makeText(MainActivity.this, R.string.empty_size_of_array, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.empty_array, Toast.LENGTH_SHORT).show();
                 else{
                     int sizeOfArrayInt = 0;
                     String number = "";
@@ -126,7 +132,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             number = number + stringArray.charAt(i);
                         }
                     }
-                    size_of_array[0] = sizeOfArrayInt;
+                    if(final_array.toArray().length == 0) {
+                        Toast.makeText(MainActivity.this, R.string.wrong_data_format, Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        size_of_array[0] = sizeOfArrayInt;
+                        Intent intent = new Intent(MainActivity.this, ChooseTypeOfSort.class);
+                        intent.putExtra("array", final_array);
+                        intent.putExtra("size_of_array", size_of_array[0]);
+                        startActivity(intent);
+                    }
                 }
             }
         }));
@@ -141,17 +156,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     size_of_array[0] = 0;
                     try {
                         size_of_array[0] = Integer.parseInt(almostSortedSize.getText().toString());
+                        for(int i = 0; i < size_of_array[0]; i++){
+                            final_array.add(i);
+                        }
+                        for(int i = 0; i < 2; i++){
+                            int value = (int) (Math.random() * ((size_of_array[0] - i - 1) + 1));
+                            int temp = final_array.get(value - 1);
+                            final_array.set(value - 1, final_array.get(value));
+                            final_array.set(value, temp);
+                        }
+                        Intent intent = new Intent(MainActivity.this, ChooseTypeOfSort.class);
+                        intent.putExtra("array", final_array);
+                        intent.putExtra("size_of_array", size_of_array[0]);
+                        startActivity(intent);
                     } catch (NumberFormatException e) {
                         Toast.makeText(MainActivity.this, R.string.wrong_data_format, Toast.LENGTH_SHORT).show();
-                    }
-                    for(int i = 0; i < size_of_array[0]; i++){
-                        final_array.add(i);
-                    }
-                    for(int i = 0; i < 2; i++){
-                        int value = (int) (Math.random() * ((size_of_array[0] - i - 1) + 1));
-                        int temp = final_array.get(value - 1);
-                        final_array.set(value - 1, final_array.get(value));
-                        final_array.set(value, temp);
                     }
                 }
             }
@@ -167,11 +186,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     size_of_array[0] = 0;
                     try {
                         size_of_array[0] = Integer.parseInt(reverseSortedSize.getText().toString());
+                        for(int i = size_of_array[0] - 1; i >= 0; i--){
+                            final_array.add(i);
+                        }
+                        Intent intent = new Intent(MainActivity.this, ChooseTypeOfSort.class);
+                        intent.putExtra("array", final_array);
+                        intent.putExtra("size_of_array", size_of_array[0]);
+                        startActivity(intent);
                     } catch (NumberFormatException e) {
                         Toast.makeText(MainActivity.this, R.string.wrong_data_format, Toast.LENGTH_SHORT).show();
-                    }
-                    for(int i = size_of_array[0] - 1; i >= 0; i--){
-                        final_array.add(i);
                     }
                 }
             }
@@ -187,25 +210,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     size_of_array[0] = 0;
                     try {
                         size_of_array[0] = Integer.parseInt(SortedSize.getText().toString());
+                        for(int i = 0; i < size_of_array[0]; i++){
+                            final_array.add(i);
+                        }
+                        Intent intent = new Intent(MainActivity.this, ChooseTypeOfSort.class);
+                        intent.putExtra("array", final_array);
+                        intent.putExtra("size_of_array", size_of_array[0]);
+                        startActivity(intent);
                     } catch (NumberFormatException e) {
                         Toast.makeText(MainActivity.this, R.string.wrong_data_format, Toast.LENGTH_SHORT).show();
-                    }
-                    for(int i = 0; i < size_of_array[0]; i++){
-                        final_array.add(i);
                     }
                 }
             }
         });
 
-        change_to_second_page.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ChooseTypeOfSort.class);
-                intent.putExtra("array", final_array);
-                intent.putExtra("size_of_array", size_of_array[0]);
-                startActivity(intent);
-            }
-        });
 
         test.setOnClickListener(new View.OnClickListener() {
             @Override

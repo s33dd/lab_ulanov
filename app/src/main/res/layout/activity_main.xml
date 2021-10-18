@@ -22,38 +22,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/randomSize"
+        android:id="@+id/emptyArray"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:backgroundTint="@color/white"
-        android:hint="Введите размер массива"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/buttonRandom"
-        app:layout_constraintTop_toBottomOf="@+id/arrayChooseTitle" />
-
-    <Button
-        android:id="@+id/buttonRandom"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginRight="10dp"
-        android:backgroundTint="#C12525"
-        android:onClick="onClick"
-        android:text="Случайными\nчислами"
-        app:layout_constraintLeft_toRightOf="@id/randomSize"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/emptyArray"
-        android:layout_width="221dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:backgroundTint="@color/white"
@@ -61,106 +33,136 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/buttonEmpty"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/arraySize"
         app:layout_constraintTop_toBottomOf="@+id/arrayChooseTitle" />
+
+    <EditText
+        android:id="@+id/arraySize"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/white"
+        android:hint="Введите размер массива"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arrayChooseTitle" />
+
+    <TextView
+        android:id="@+id/randomLimits"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="7dp"
+        android:textSize="18sp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/white"
+        android:text="Диапазон генерации чисел: от "
+        app:layout_constraintTop_toBottomOf="@+id/arraySize"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <EditText
+        android:id="@+id/lowerLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:backgroundTint="@color/white"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/arraySize"
+        app:layout_constraintLeft_toRightOf="@+id/randomLimits"/>
+
+    <TextView
+        android:id="@+id/limitMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="7dp"
+        android:textSize="18sp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/white"
+        android:text=" до "
+        app:layout_constraintTop_toBottomOf="@+id/arraySize"
+        app:layout_constraintLeft_toRightOf="@+id/lowerLimit"/>
+
+    <EditText
+        android:id="@+id/upperLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:backgroundTint="@color/white"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/arraySize"
+        app:layout_constraintLeft_toRightOf="@+id/limitMsg"/>
+
+    <Button
+        android:id="@+id/buttonRandom"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="30dp"
+        android:backgroundTint="#C12525"
+        android:onClick="onClick"
+        android:text="Случайными\nчислами"
+        app:layout_constraintTop_toBottomOf="@id/randomLimits"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/buttonEmpty"/>
 
     <Button
         android:id="@+id/buttonEmpty"
         android:layout_width="160dp"
         android:layout_height="60dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
         android:backgroundTint="#C12525"
         android:onClick="onClick"
         android:text="Заполнить\nвручную"
-        app:layout_constraintLeft_toRightOf="@id/emptyArray"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/almostSortedSize"
-        android:layout_width="221dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="185dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:backgroundTint="@color/white"
-        android:hint="Введите размер массива"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/buttonAlmost"
-        app:layout_constraintTop_toBottomOf="@+id/arrayChooseTitle" />
+        app:layout_constraintTop_toBottomOf="@id/randomLimits" />
 
     <Button
         android:id="@+id/buttonAlmost"
         android:layout_width="160dp"
         android:layout_height="60dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="10dp"
         android:backgroundTint="#C12525"
         android:onClick="onClick"
         android:text="Почти\nотсортирован"
-        app:layout_constraintLeft_toRightOf="@id/almostSortedSize"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/reverseSortedSize"
-        android:layout_width="221dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="255dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:backgroundTint="@color/white"
-        android:hint="Введите размер массива"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/buttonReverse"
-        app:layout_constraintTop_toBottomOf="@+id/arrayChooseTitle" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRandom" />
 
     <Button
         android:id="@+id/buttonReverse"
         android:layout_width="160dp"
         android:layout_height="60dp"
-        android:layout_marginTop="340dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
         android:backgroundTint="#C12525"
         android:onClick="onClick"
         android:text="Обратно\nотсортирован"
-        app:layout_constraintLeft_toRightOf="@id/reverseSortedSize"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/SortedSize"
-        android:layout_width="221dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="325dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:backgroundTint="@color/white"
-        android:hint="Введите размер массива"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/buttonSorted"
-        app:layout_constraintTop_toBottomOf="@+id/arrayChooseTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonEmpty" />
 
 
     <Button
         android:id="@+id/buttonSorted"
         android:layout_width="160dp"
         android:layout_height="60dp"
-        android:layout_marginTop="410dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="12dp"
         android:backgroundTint="#C12525"
         android:onClick="onClick"
         android:text="Полностью\nотсортирован"
-        app:layout_constraintLeft_toRightOf="@id/SortedSize"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonReverse" />
 
     <LinearLayout
         android:id="@+id/llError"
@@ -175,32 +177,16 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/change_to_second_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="477dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="7dp"
-        android:layout_weight="1"
-        android:text="Далее"
-        android:backgroundTint="#e6871c"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/llError"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginRight="30dp"
-        android:text="Протестировать"
+        android:layout_marginTop="60dp"
+        android:text="Включить режим тестирования"
         android:backgroundTint="#e6871c"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/change_to_second_page"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSorted" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

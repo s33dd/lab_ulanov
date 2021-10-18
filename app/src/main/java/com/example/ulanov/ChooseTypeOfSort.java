@@ -202,6 +202,12 @@ public class ChooseTypeOfSort extends AppCompatActivity {
         TextView insertResultText = findViewById(R.id.insertResultText);
         TextView mergeTextResult = findViewById(R.id.mergeTextResult);
         TextView pyramidTextResult = findViewById(R.id.pyramidTextResult);
+        TextView originalArray = findViewById(R.id.originalArray);
+
+        Bundle args = getIntent().getExtras();
+        ArrayList<Integer> array = args.getIntegerArrayList("array");;
+        originalArray.setText("Массив:\n" + array.toString());
+
 
         bubbleSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
